@@ -1,10 +1,12 @@
 import os
+from typing import List
 
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QHBoxLayout, QLabel, QWidget
 
 
 class MoveWidget(QWidget):
-    def __init__(self, directory):
+    def __init__(self, directory: str):
         super().__init__()
         self.current_directory = directory
         self.update_move_sections()
@@ -16,22 +18,38 @@ class MoveWidget(QWidget):
         self.lt.addWidget(self.label)
         self.update_label_text()
         self.setLayout(self.lt)
+        self.setMinimumSize(800, 600)
+        self.setAutoFillBackground(True)
+        self.init_font()
+        self.init_palette()
+
+    @staticmethod
+    def get_normalized_labels(labels: List[str]):
+        return [label.replace("+", "/") for label in labels]
+
+    def init_font(self):
+        font = self.font()
+        font.setPixelSize(20)
+        self.setFont(font)
+
+    def init_palette(self):
+        palette = self.palette()
+        palette.setColor(self.backgroundRole(), Qt.white)
+        self.setPalette(palette)
 
     def update_move_sections(self):
         if os.path.isdir(self.current_directory):
-            self.move_sections = os.listdir(self.current_directory)
+            self.move_sections: List[str] = os.listdir(self.current_directory)
         else:
             self.move_sections = []
 
     def update_label_text(self):
         if os.path.isdir(self.current_directory):
-            self.label.setText("\n".join(self.move_sections))
+            labels = self.get_normalized_labels(self.move_sections)
+            self.label.setText("\n".join(labels))
         else:
             with open(self.current_directory, "r", encoding="utf-8") as doc:
                 self.label.setText(doc.read())
-
-    def init_label(self):
-        self.lt.addWidget(QLabel(self.data))
 
     def key_press(self, key_id):
         index = key_id - 49
@@ -42,7 +60,10 @@ class MoveWidget(QWidget):
                 self.current_directory.split("/")[:-1]
             )
         else:
-            self.current_directory += "/" + self.move_sections[index]
+            try:
+                self.current_directory += "/" + self.move_sections[index]
+            except IndexError:  # HACK
+                pass
 
         self.update_move_sections()
         self.update_label_text()

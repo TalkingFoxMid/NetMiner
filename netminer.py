@@ -3,7 +3,7 @@ import sys
 from PyQt5.QtGui import QKeyEvent
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
-from move_widget import MoveWidget
+from src.move_widget import MoveWidget
 
 
 class MainWindow(QMainWindow):
