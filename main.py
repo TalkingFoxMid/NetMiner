@@ -15,7 +15,12 @@ class MainWindow(QMainWindow):
         self.centralWidget().key_press(a0.key())
 
 
-app = QApplication(sys.argv)
-window = MainWindow()
-window.show()
-app.exec_()
+def main():
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    app.exec_()
+
+
+if __name__ == "__main__":
+    main()
