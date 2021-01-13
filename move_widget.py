@@ -19,7 +19,13 @@ class MoveWidget(QWidget):
         lt = QHBoxLayout()
         lt.addWidget(QLabel(self.data))
         self.setLayout(lt)
-
+    def get_name(self):
+        return self.section_name
+    def set_parent(self, parent):
+        self.previous_widget = parent
     def key_press(self, key_id):
         if key_id == self.ESCAPE_KEY:
             self.main_window.setCentralWidget(self.previous_widget)
+            return
+        index = key_id - 49
+        self.main_window.setCentralWidget(self.move_map[index])
