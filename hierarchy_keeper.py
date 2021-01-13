@@ -9,11 +9,18 @@ class HierarchyKeeper:
         self.netmin_move_widget = MoveWidget(
             [],
             self.data_provider,
-            "root",
+            "netmin",
+            self.main_window
+        )
+        self.netquest_move_widget = MoveWidget(
+            [],
+            self.data_provider,
+            "netquest",
             self.main_window
         )
         self.root_move_widget = MoveWidget(
-            [self.netmin_move_widget],
+            [self.netmin_move_widget,
+             self.netquest_move_widget],
             self.data_provider,
             "root",
             self.main_window,
