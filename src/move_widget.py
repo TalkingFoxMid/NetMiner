@@ -1,8 +1,11 @@
 import os
 from typing import List
 
+from config import SLASH_REPLACER, WND_HEIGHT, WND_WIDTH
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QHBoxLayout, QLabel, QWidget
+from PyQt5.QtWidgets import QHBoxLayout, QWidget
+
+from src.scrollable_label import ScrollableLabel
 
 
 class MoveWidget(QWidget):
@@ -12,20 +15,19 @@ class MoveWidget(QWidget):
         self.update_move_sections()
         self.ESCAPE_KEY = 16777216
 
-        self.label = QLabel()
-        self.label.setWordWrap(True)
+        self.label = ScrollableLabel()
         self.lt = QHBoxLayout()
         self.lt.addWidget(self.label)
         self.update_label_text()
         self.setLayout(self.lt)
-        self.setMinimumSize(800, 600)
+        self.setMinimumSize(WND_WIDTH, WND_HEIGHT)
         self.setAutoFillBackground(True)
         self.init_font()
         self.init_palette()
 
     @staticmethod
     def get_normalized_labels(labels: List[str]):
-        return [label.replace("+", "/") for label in labels]
+        return [label.replace(SLASH_REPLACER, "/") for label in labels]
 
     def init_font(self):
         font = self.font()
