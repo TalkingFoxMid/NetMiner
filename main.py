@@ -14,6 +14,7 @@ class MainWindow(QMainWindow):
     def keyPressEvent(self, a0: QKeyEvent):
         self.centralWidget().key_press(a0.key())
 
+
 app = QApplication(sys.argv)
 window = MainWindow()
 window.show()
