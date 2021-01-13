@@ -1,6 +1,5 @@
 import os
 
-from PyQt5.QtGui import QKeyEvent
 from PyQt5.QtWidgets import QHBoxLayout, QLabel, QWidget
 
 
@@ -28,8 +27,8 @@ class MoveWidget(QWidget):
         if os.path.isdir(self.current_directory):
             self.label.setText("\n".join(self.move_sections))
         else:
-            with open(self.current_directory, "r", encoding="utf-8") as f:
-                self.label.setText(f.read())
+            with open(self.current_directory, "r", encoding="utf-8") as doc:
+                self.label.setText(doc.read())
 
     def init_label(self):
         self.lt.addWidget(QLabel(self.data))
