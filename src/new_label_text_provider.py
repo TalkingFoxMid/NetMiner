@@ -26,8 +26,8 @@ class NewLabelTextProvider:
             if image_matches:
                 img = image_matches[0]
                 image_label.setPixmap(QPixmap(f"images/{img}").scaled(
-                    image_label.width(),
-                    image_label.height()
+                    600,
+                    200
                 ))
 
             label.setText(txt)
