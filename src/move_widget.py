@@ -19,11 +19,11 @@ class MoveWidget(QWidget):
 
         self.init_font()
         self.init_palette()
+        self.init_header_label()
         self.init_image_label()
         self.init_scrollable_label()
 
-        self.update_move_sections()
-        self.update_label_text()
+        self.update_all()
 
         self.setLayout(self.lt)
         self.setMinimumSize(WND_WIDTH, WND_HEIGHT)
@@ -39,6 +39,10 @@ class MoveWidget(QWidget):
         palette.setColor(self.backgroundRole(), Qt.white)
         self.setPalette(palette)
 
+    def init_header_label(self):
+        self.header_label = QLabel()
+        self.lt.addWidget(self.header_label)
+
     def init_image_label(self):
         self.image_label = QLabel()
         self.lt.addWidget(self.image_label)
@@ -48,7 +52,12 @@ class MoveWidget(QWidget):
         self.label = ScrollableLabel()
         self.lt.addWidget(self.label)
 
-    def update_move_sections(self):
+    def update_all(self):
+        self._update_move_sections()
+        self._update_header_text()
+        self._update_label_text()
+
+    def _update_move_sections(self):
         current_path = Path(self.current_pathname).absolute()
         self.image_label.hide()
         if current_path.is_dir():
@@ -58,7 +67,7 @@ class MoveWidget(QWidget):
         else:
             self.move_sections = []
 
-    def update_label_text(self):
+    def _update_label_text(self):
         self.new_label_text_provider.update_label_text(
             self.current_pathname,
             self.label,
@@ -66,8 +75,11 @@ class MoveWidget(QWidget):
             self.move_sections,
         )
 
+    def _update_header_text(self):
+        self.header_label.setText(self.current_pathname)
+
     def key_press(self, key_id):
-        index = (key_id - 49) % 10
+        index = key_id - 49 if key_id - 49 != -1 else 9
         if key_id == self.ESCAPE_KEY:
             if self.current_pathname == "content":
                 return
@@ -79,6 +91,4 @@ class MoveWidget(QWidget):
                 self.current_pathname += "/" + self.move_sections[index]
             except IndexError:  # HACK
                 pass
-
-        self.update_move_sections()
-        self.update_label_text()
+        self.update_all()
