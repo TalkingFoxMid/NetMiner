@@ -1,9 +1,11 @@
 import os
 from typing import List
 
+from PyQt5.QtGui import QPixmap
+
 from config import SLASH_REPLACER, WND_HEIGHT, WND_WIDTH
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QHBoxLayout, QWidget
+from PyQt5.QtWidgets import QHBoxLayout, QWidget, QLabel, QVBoxLayout
 
 from src.new_label_text_provider import NewLabelTextProvider
 from src.scrollable_label import ScrollableLabel
@@ -17,7 +19,9 @@ class MoveWidget(QWidget):
         self.ESCAPE_KEY = 16777216
         self.new_label_text_provider = NewLabelTextProvider()
         self.label = ScrollableLabel()
-        self.lt = QHBoxLayout()
+        self.image_label = QLabel()
+        self.lt = QVBoxLayout()
+        self.lt.addWidget(self.image_label)
         self.lt.addWidget(self.label)
         self.update_label_text()
         self.setLayout(self.lt)
@@ -48,6 +52,7 @@ class MoveWidget(QWidget):
         self.new_label_text_provider.update_label_text(
             self.current_directory,
             self.label,
+            self.image_label,
             self.move_sections
         )
     def key_press(self, key_id):
