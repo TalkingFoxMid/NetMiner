@@ -1,5 +1,6 @@
-from typing import List
 import os
+from typing import List
+
 from config import SLASH_REPLACER
 
 
@@ -8,9 +9,7 @@ class NewLabelTextProvider:
     def get_normalized_labels(labels: List[str]):
         return [label.replace(SLASH_REPLACER, "/") for label in labels]
 
-    def update_label_text(self, current_directory,
-                          label,
-                          move_sections):
+    def update_label_text(self, current_directory, label, move_sections):
         if os.path.isdir(current_directory):
             labels = self.get_normalized_labels(move_sections)
             label.setText("\n".join(labels))

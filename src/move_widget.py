@@ -26,7 +26,6 @@ class MoveWidget(QWidget):
         self.init_font()
         self.init_palette()
 
-
     def init_font(self):
         font = self.font()
         font.setPixelSize(20)
@@ -43,13 +42,11 @@ class MoveWidget(QWidget):
         else:
             self.move_sections = []
 
-
     def update_label_text(self):
         self.new_label_text_provider.update_label_text(
-            self.current_directory,
-            self.label,
-            self.move_sections
+            self.current_directory, self.label, self.move_sections
         )
+
     def key_press(self, key_id):
         index = key_id - 49
         if key_id == self.ESCAPE_KEY:
