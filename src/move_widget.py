@@ -61,9 +61,10 @@ class MoveWidget(QWidget):
         current_path = Path(self.current_pathname).absolute()
         self.image_label.hide()
         if current_path.is_dir():
-            self.move_sections: List[str] = [
+            self.move_sections: List[str] = sorted([
                 path.name for path in current_path.iterdir()
-            ]
+            ])
+
         else:
             self.move_sections = []
 
@@ -79,9 +80,36 @@ class MoveWidget(QWidget):
         self.header_label.setText(
             self.current_pathname.removeprefix(CONTENT_DIR)
         )
-
+    def get_hotkey(self, id):
+        dic = {
+                49: 0,
+                50: 1,
+                51: 2,
+                52: 3,
+                53: 4,
+                81: 5,
+                87: 6,
+                69: 7,
+                82: 8,
+                84: 9
+                }
+        if id in dic:
+            return dic[id]
+        return -1
     def key_press(self, key_id):
-        index = key_id - 49 if key_id - 49 != -1 else 9
+        print(key_id)
+        if key_id == 83:
+            self.label.do_scroll(-13)
+            return
+        if key_id == 88:
+            self.label.do_scroll(13)
+            return
+        if key_id == 68:
+            self.label.scroll(14, 0)
+            return
+        if key_id == 65:
+            self.label.scroll(-14, 0)
+            return
         if key_id == self.ESCAPE_KEY:
             if self.current_pathname == "content":
                 return
@@ -90,6 +118,9 @@ class MoveWidget(QWidget):
             )
         else:
             try:
+                index = self.get_hotkey(key_id)
+                if index == -1:
+                    return
                 self.current_pathname += "/" + self.move_sections[index]
             except IndexError:  # HACK
                 pass

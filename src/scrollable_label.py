@@ -7,6 +7,7 @@ class ScrollableLabel(QScrollArea):
         self.setWidgetResizable(True)
         self.setWidget(QWidget(self))
         self.label = QLabel(init_data)
+
         self.label.setWordWrap(True)
         self.label.setAlignment(QtCore.Qt.AlignTop)
 
@@ -17,3 +18,5 @@ class ScrollableLabel(QScrollArea):
 
     def setText(self, text):
         self.label.setText(text)
+    def do_scroll(self, delta_y):
+        self.verticalScrollBar().setValue(self.verticalScrollBar().value() + delta_y1)

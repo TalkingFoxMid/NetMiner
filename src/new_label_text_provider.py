@@ -19,15 +19,20 @@ from src.scrollable_label import ScrollableLabel
 
 class NewLabelTextProvider:
     @staticmethod
+    def get_hotkey(index):
+        return ["1","2","3","4","5","q","w","e","r","t"][index]
+    @staticmethod
     def get_normalized_labels(labels: List[str]):
         return [
             (
-                str(labels.index(label) + 1)
+                NewLabelTextProvider.get_hotkey(labels.index(label))
                 + ":  "
                 + label.replace(SLASH_REPLACER, "/").replace(".txt", "")
             )
             for label in labels
         ]
+
+
 
     def update_label_text(
         self,
@@ -38,9 +43,12 @@ class NewLabelTextProvider:
     ):
         current_path = Path(pathname).absolute()
         if current_path.is_dir():
+            move_sections = sorted(move_sections)
             labels = self.get_normalized_labels(move_sections)
+
             label.setText("\n".join(labels))
         else:
+
             with current_path.open("r", encoding="utf-8") as doc:
                 text = doc.read()
             image_matches = re.findall(r"(\[img_src\]\((.+?)\))", text)

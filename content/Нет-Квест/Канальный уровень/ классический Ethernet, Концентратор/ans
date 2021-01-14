@@ -1,0 +1,20 @@
+Типы Ethernet:
+
+- Ethernet - 10Мб/с 802.3;
+- Fast Ethernet - 100Мб/с 802.3u;
+- Gigabit Ethernet - 1Гб/с 802.3z 802ab;
+- 5G Ethernet - 2,5 Гб/с 5 Гб/с 802.3bz
+- 10G Ethernet - 10 Гб/с 802ae, 802.3an
+- 100G Ethernet - 40Гб/с 100 Гб/с 802ba
+
+Классический Ethernet: Разделяемая среда, Ethernet – Gigabit Ethernet
+
+Коммутируемый Ethernet:
+
+- Точка-точка, Появился в Fast Ethernet, Единственный вариант в 10G Ethernet и выше
+
+Концентратор (хаб) - устройство для создания сетей Ethernet на основе витой пары. (Физ - звезда, Логич - общая шина)
+
+Стандарты: Ethernet (Xerox), Ethernet II (Ethernet DIX), IEEE 802.3 (юридический стандарт Ethernet)
+
+Формат Ethernet II: 6 байт Адрес получателя; 6 байт Адрес отправителя; 2 байта Тип; 46-1500 байт Данные; 4 байта Контрольная сумма
