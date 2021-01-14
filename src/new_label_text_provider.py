@@ -6,7 +6,7 @@ from config import SLASH_REPLACER
 class NewLabelTextProvider:
     @staticmethod
     def get_normalized_labels(labels: List[str]):
-        return [label.replace(SLASH_REPLACER, "/") for label in labels]
+        return [ (str(labels.index(label)+1)+":  " + label.replace(SLASH_REPLACER, "/")) for label in labels]
 
     def update_label_text(self, current_directory,
                           label,
