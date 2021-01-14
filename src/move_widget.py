@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import List
 
-from config import WND_HEIGHT, WND_WIDTH
+from config import CONTENT_DIR, WND_HEIGHT, WND_WIDTH
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QLabel, QVBoxLayout, QWidget
 
@@ -76,7 +76,9 @@ class MoveWidget(QWidget):
         )
 
     def _update_header_text(self):
-        self.header_label.setText(self.current_pathname)
+        self.header_label.setText(
+            self.current_pathname.removeprefix(CONTENT_DIR)
+        )
 
     def key_press(self, key_id):
         index = key_id - 49 if key_id - 49 != -1 else 9
