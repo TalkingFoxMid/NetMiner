@@ -82,6 +82,18 @@ class MoveWidget(QWidget):
 
     def key_press(self, key_id):
         index = key_id - 49 if key_id - 49 != -1 else 9
+        if key_id == 87:
+            self.label.do_scroll(-13)
+            return
+        if key_id == 83:
+            self.label.do_scroll(13)
+            return
+        if key_id == 68:
+            self.label.scroll(14, 0)
+            return
+        if key_id == 65:
+            self.label.scroll(-14, 0)
+            return
         if key_id == self.ESCAPE_KEY:
             if self.current_pathname == "content":
                 return

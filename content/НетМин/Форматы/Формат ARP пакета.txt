@@ -1,1 +1,21 @@
 [img_src](format_arp.png)
+
+HTYPE:
+ Типа среды. 1 -- Ethernet.
+PTYPE:
+    ARP can be used with any higher-level protocol such as IPv4, IPv6, etc.
+HLEN:
+    Длину физического адреса в байтах
+    У Ethernet - 6 байт.
+PLEN:
+    Длину адреса протокола в байтах.
+OPER:
+    ARP Request	1
+    ARP Reply	2
+    RARP Request	3
+    RARP Reply	4
+    DRARP Request	5
+    DRARP Reply	6
+    DRARP Error	7
+    InARP Request	8
+    InARP Reply	9

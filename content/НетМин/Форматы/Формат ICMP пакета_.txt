@@ -1,1 +1,18 @@
-[img_src](format_icmp.png)t_arp.png)
+[img_src](format_icmp.png)
+Тип сообщения:
+0	Эхо-ответ (Echo Replay)
+3	Узел назначения недостижим (Destination Unreachable)
+4	Подавление источника (Source Quench)
+5	Перенаправление маршрута (Redirect)
+8	Эхо-запрос (Echo Request)
+11	Истечение времени дейтаграммы (Time-to-live exceeded)
+12	Проблема с параметром пакета (Parameter Problem on a Datagram)
+13	Запрос отметки времени (Timestamp Request)
+14	Ответ отметки времени (Timestamp Replay)
+17	Запрос маски (Address Mask Request)
+18	Ответ маски (Address Mask Replay)
+
+Код:
+    Уточнение типа сообщения, дополнительная информация о сообщении.
+
+Поле данных является необязательным.

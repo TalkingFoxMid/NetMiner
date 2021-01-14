@@ -29,6 +29,8 @@ class NewLabelTextProvider:
             for label in labels
         ]
 
+
+
     def update_label_text(
         self,
         pathname,
@@ -39,8 +41,10 @@ class NewLabelTextProvider:
         current_path = Path(pathname).absolute()
         if current_path.is_dir():
             labels = self.get_normalized_labels(move_sections)
+
             label.setText("\n".join(labels))
         else:
+
             with current_path.open("r", encoding="utf-8") as doc:
                 text = doc.read()
             image_matches = re.findall(r"(\[img_src\]\((.+?)\))", text)
