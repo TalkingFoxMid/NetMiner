@@ -13,20 +13,21 @@ class MoveWidget(QWidget):
     def __init__(self, pathname: str):
         super().__init__()
         self.current_pathname = pathname
-        self.update_move_sections()
         self.ESCAPE_KEY = 16777216
         self.new_label_text_provider = NewLabelTextProvider()
-        self.label = ScrollableLabel()
-        self.image_label = QLabel()
         self.lt = QVBoxLayout()
-        self.lt.addWidget(self.image_label)
-        self.lt.addWidget(self.label)
+
+        self.init_font()
+        self.init_palette()
+        self.init_image_label()
+        self.init_scrollable_label()
+
+        self.update_move_sections()
         self.update_label_text()
+
         self.setLayout(self.lt)
         self.setMinimumSize(WND_WIDTH, WND_HEIGHT)
         self.setAutoFillBackground(True)
-        self.init_font()
-        self.init_palette()
 
     def init_font(self):
         font = self.font()
@@ -38,8 +39,18 @@ class MoveWidget(QWidget):
         palette.setColor(self.backgroundRole(), Qt.white)
         self.setPalette(palette)
 
+    def init_image_label(self):
+        self.image_label = QLabel()
+        self.lt.addWidget(self.image_label)
+        self.image_label.hide()
+
+    def init_scrollable_label(self):
+        self.label = ScrollableLabel()
+        self.lt.addWidget(self.label)
+
     def update_move_sections(self):
         current_path = Path(self.current_pathname).absolute()
+        self.image_label.hide()
         if current_path.is_dir():
             self.move_sections: List[str] = [
                 path.name for path in current_path.iterdir()
@@ -56,7 +67,7 @@ class MoveWidget(QWidget):
         )
 
     def key_press(self, key_id):
-        index = key_id - 49
+        index = (key_id - 49) % 10
         if key_id == self.ESCAPE_KEY:
             if self.current_pathname == "content":
                 return
