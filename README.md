@@ -1,6 +1,9 @@
 # NetMiner
 Питон является лучшим языком для сдачи сетей!
-![Image of Yaktocat](https://sun9-11.userapi.com/impf/NV8ae0KHMFl6UsD7hGdWsoRTlIStTBZ_jmW3SQ/616obKk6rFE.jpg?size=800x587&quality=96&proxy=1&sign=f48a9657d01022b5a0a15e8351267d19&type=album)
+![Image of Yaktocat](https://sun9-51.userapi.com/impf/X2XbVg2iYHjIETND5h_hvJKWAXCR2bzobzrmfw/wRSkI34lLcs.jpg?size=854x480&quality=96&proxy=1&sign=ea789e48a004d5a228193c1147478944&type=album)
 
 # Использование
-> Программа проста как топор Шварца
+> Уже не так проста, как топор Шварца, но до сих пор не сложнее преобразования Лапласа.
+Бинды работают только в английской раскладке!!!
+s/x - прокрутка текста.
+a/d - передвижение текста.
