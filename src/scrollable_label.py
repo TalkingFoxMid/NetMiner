@@ -19,4 +19,4 @@ class ScrollableLabel(QScrollArea):
     def setText(self, text):
         self.label.setText(text)
     def do_scroll(self, delta_y):
-        self.verticalScrollBar().setValue(self.verticalScrollBar().value() + delta_y1)
+        self.verticalScrollBar().setValue(self.verticalScrollBar().value() + delta_y)
